@@ -19,20 +19,19 @@ public class BookScrabbleHandler implements ClientHandler{
         dm = DictionaryManager.get();
         
         String[] inputFromClient = in.next().split(",");
-        boolean wordExists = false;
+        boolean isWordExists = false;
 
         if(inputFromClient.equals('Q'))
         {
-            //Deletes the 'Q' from the array, calling quary with just the files names and the word to check
-            wordExists = dm.query(Arrays.copyOfRange(inputFromClient, 1, inputFromClient.length));
+            isWordExists = dm.query(Arrays.copyOfRange(inputFromClient, 1, inputFromClient.length));
         }
         else
         {//'C'
             //Deletes the 'C' from the array, calling challenge with just the files names and the word to check
-            wordExists = dm.challenge(Arrays.copyOfRange(inputFromClient, 1, inputFromClient.length));
+            isWordExists = dm.challenge(Arrays.copyOfRange(inputFromClient, 1, inputFromClient.length));
         }
 
-        out.println(wordExists ? "true" : "false");
+        out.println(isWordExists ? "true" : "false");
         out.flush();
     }
     
